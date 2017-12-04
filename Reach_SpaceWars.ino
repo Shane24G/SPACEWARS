@@ -23,18 +23,6 @@ bool GAMEOVER ;
 // a global variable that represents the LED screen
 RGBmatrixPanel matrix(A, B, C, CLK, LAT, OE, false);
 
-const Color BLACK(0, 0, 0);
-const Color RED(4, 0, 0);
-const Color ORANGE(4, 2, 0);
-const Color YELLOW(4, 4, 0);
-const Color GREEN(0, 4, 0);
-const Color BLUE(0, 0, 4);
-const Color PURPLE(4, 0, 4);
-const Color WHITE(4, 4, 4);
-const Color LIME(2, 4, 0);
-const Color AQUA(0, 4, 4);
-
-
 class Color {
   public:
     int red;
@@ -58,6 +46,19 @@ class Color {
       return matrix.Color333(red, green, blue);
     }
 };
+
+const Color BLACK(0, 0, 0);
+const Color RED(4, 0, 0);
+const Color ORANGE(4, 2, 0);
+const Color YELLOW(4, 4, 0);
+const Color GREEN(0, 4, 0);
+const Color BLUE(0, 0, 4);
+const Color PURPLE(4, 0, 4);
+const Color WHITE(4, 4, 4);
+const Color LIME(2, 4, 0);
+const Color AQUA(0, 4, 4);
+
+
 
 
 class SlimShady_Player1 {
