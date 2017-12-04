@@ -65,7 +65,7 @@ class SlimShady_Player1 {
 
     /*Setting player variables to their default values in context
     of the game*/
-    Player() {
+    SlimShady_Player1() {
       x = 0;
       y = 0;
       lives = 5;
@@ -105,6 +105,9 @@ class SlimShady_Player1 {
     void erase() {
       draw_with_rgb(BLACK);
     }
+
+
+    
 
   private:
     int x;
@@ -147,51 +150,51 @@ class SlimShady_Player1 {
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with PURPLE color
-        matrix.drawPixel(xC2, yR1, PURPLE) ;
-        matrix.drawPixel(xC2, yR2, PURPLE) ;
+        matrix.drawPixel(xC2, yR1, PURPLE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, PURPLE.to_333()) ;
         
       }
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with BLUE color
-        matrix.drawPixel(xC2, yR1, BLUE) ;
-        matrix.drawPixel(xC2, yR2, BLUE) ;
+        matrix.drawPixel(xC2, yR1, BLUE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, BLUE.to_333()) ;
         
       }
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with LIME color
-        matrix.drawPixel(xC2, yR1, LIME) ;
-        matrix.drawPixel(xC2, yR2, LIME) ;
+        matrix.drawPixel(xC2, yR1, LIME.to_333()) ;
+        matrix.drawPixel(xC2, yR2, LIME.to_333()) ;
         
       }
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with ORANGE color
-        matrix.drawPixel(xC2, yR1, ORANGE) ;
-        matrix.drawPixel(xC2, yR2, ORANGE) ;
+        matrix.drawPixel(xC2, yR1, ORANGE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, ORANGE.to_333()) ;
         
       }
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with RED color
-        matrix.drawPixel(xC2, yR1, RED) ;
-        matrix.drawPixel(xC2, yR2, RED) ;
+        matrix.drawPixel(xC2, yR1, RED.to_333()) ;
+        matrix.drawPixel(xC2, yR2, RED.to_333()) ;
         
       }
 
@@ -199,11 +202,164 @@ class SlimShady_Player1 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(xC1, yR1, color) ;
-        matrix.drawPixel(xC1, yR2, color) ;
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
         //drawing second column with RED color
-        matrix.drawPixel(xC2, yR1, WHITE) ;
-        matrix.drawPixel(xC2, yR2, WHITE) ;
+        matrix.drawPixel(xC2, yR1, WHITE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, WHITE.to_333()) ;
+     }
+    }
+};
+
+
+//Creating Player 2 class
+class SlimShady_Player2 {
+   public:
+
+    /*Setting player variables to their default values in context
+    of the game*/
+    SlimShady_Player2() {
+      x = 0;
+      y = 0;
+      lives = 5;
+      initialize(0,7);
+    }
+    
+    // getters
+    int get_x() const {
+     return x;
+    }
+    int get_y() const {
+     return y;
+    }
+    int get_lives() const {
+     return lives;
+    }
+    
+    // setter
+    void set_y(int y_arg) {
+       y = y_arg;
+    }
+    
+    // Modifies: lives
+    void hit() {
+      // decrements number of lives by 1 
+      lives -= 1;
+    }
+    
+    // draws the Player
+    // calls: draw_with_rgb
+    void draw() {
+      draw_with_rgb(AQUA);
+    }
+    
+    // draws black where the Player used to be
+    // calls: draw_with_rgb
+    void erase() {
+      draw_with_rgb(BLACK);
+    }
+
+
+    
+
+  private:
+    int x;
+    int y;
+    int lives;
+
+    // sets private data members x and y to initial values
+    void initialize(int x_arg, int y_arg) {
+     x = x_arg;
+     y = y_arg;
+    }
+    
+    // draws the player
+    void draw_with_rgb(Color color) {
+
+
+      int xC1 = 0, xC2 = 1;
+      int yR1 = y, yR2 = y + 1;
+
+      if(y <= 0)
+      {
+        draw_WRT_lives(0,0, color);
+      }
+
+      else if(y >= 30)
+      {
+        draw_WRT_lives(0,30, color);
+      }
+
+      else if(x >= 0 && x <= 29)
+      {
+        draw_WRT_lives(0,y, color);
+      }
+    }
+    void draw_WRT_lives(int x_arg,int y_arg, Color color)
+    {
+      int xC1 = 0, xC2 = 1;
+      int yR1 = y, yR2 = y + 1;
+      matrix.setCursor(0, y);
+      if(lives == 5)
+      {
+        //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with PURPLE color
+        matrix.drawPixel(xC2, yR1, PURPLE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, PURPLE.to_333()) ;
+        
+      }
+      else if(lives == 4)
+      {
+        //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with BLUE color
+        matrix.drawPixel(xC2, yR1, BLUE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, BLUE.to_333()) ;
+        
+      }
+      else if(lives == 3)
+      {
+        //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with LIME color
+        matrix.drawPixel(xC2, yR1, LIME.to_333()) ;
+        matrix.drawPixel(xC2, yR2, LIME.to_333()) ;
+        
+      }
+      else if(lives == 2)
+      {
+        //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with ORANGE color
+        matrix.drawPixel(xC2, yR1, ORANGE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, ORANGE.to_333()) ;
+        
+      }
+      else if(lives == 1)
+      {
+        //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with RED color
+        matrix.drawPixel(xC2, yR1, RED.to_333()) ;
+        matrix.drawPixel(xC2, yR2, RED.to_333()) ;
+        
+      }
+
+      //Impossible case scenario of attaining WHITE form
+     else if(lives == 6)
+     {
+      //drawing first column with the AQUA argument
+        matrix.drawPixel(xC1, yR1, color.to_333()) ;
+        matrix.drawPixel(xC1, yR2, color.to_333()) ;
+        //drawing second column with RED color
+        matrix.drawPixel(xC2, yR1, WHITE.to_333()) ;
+        matrix.drawPixel(xC2, yR2, WHITE.to_333()) ;
      }
     }
 };
