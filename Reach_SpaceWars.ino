@@ -1263,6 +1263,125 @@ void loop() {
 }
 
 
+//making changes from adarsh's laptop down below
+void print_player1()
+{
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+ 
+  matrix.setCursor(7, 14);
+
+  matrix.setTextSize(2);
+
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("P");
+  delay(75);
+
+  matrix.setTextColor(matrix.Color333(7,0,0));
+  matrix.print("1");
+  delay(500);
+
+  matrix.setCursor(7,14);
+  matrix.setTextSize(2);
+  matrix.setTextColor(matrix.Color333(7,0,0));
+  matrix.print("P1");
+  
+
+   
+}
+
+void print_player2()
+{
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+ 
+  matrix.setCursor(7, 14);
+
+  matrix.setTextSize(2);
+
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("P");
+  delay(75);
+
+  matrix.setTextColor(matrix.Color333(7,0,0));
+  matrix.print("2");
+  delay(500);
+
+  matrix.setCursor(7,14);
+  matrix.setTextSize(2);
+  matrix.setTextColor(matrix.Color333(7,0,0));
+  matrix.print("P2");
+  
+
+   
+}
+
+
+  
+void print_Screen()
+{  // Draws the classic player
+  matrix.drawPixel(2,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(3,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(4,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(3,8,RED.to_333());
+
+  // Draws Slim Shady
+  delay(50);
+  matrix.drawPixel(13,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(14,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(13,8,RED.to_333());
+  delay(50);
+  matrix.drawPixel(14,8,RED.to_333());
+
+  // Draws Big Shaq
+  delay(50);
+  matrix.drawPixel(25,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(26,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(27,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(28,7,RED.to_333());
+  delay(50);
+  matrix.drawPixel(25,8,RED.to_333());
+  delay(50);
+  matrix.drawPixel(28,8,RED.to_333());
+
+
+ }
+
+ void classic_Player_Selection()
+ { 
+   // Draws Classic Player and highlights the box showing
+   // player chose the classic player
+   printScreen();
+   matrix.fillRect(0,4,7,10, WHITE.to_333());
+   matrix.fillRect(1,3,6,9, YELLOW.to_333());
+ }
+
+ void slimShady_Player_Selection()
+ {
+  // Draws slim shady player and highlights the box showing
+  // player chose slim shady
+  printScreen();
+  matrix.fillRect(11,4,17,10, WHITE.to_333());
+  matrix.fillRect(10,3,16,9, YELLOW.to_333());
+ }
+
+ void bigShaq_Player_Selection()
+ {
+
+  // Draws Big Shaq player and highlights the box showing
+   // player chose Big Shaq
+  printScreen();
+   matrix.fillRect(23,4,31,10, WHITE.to_333());
+  matrix.fillRect(22,3,30,9, YELLOW.to_333());
+ }
+
+
 
 
 
