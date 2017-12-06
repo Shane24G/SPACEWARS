@@ -12,6 +12,8 @@ const uint8_t A = A0;
 const uint8_t B = A1;
 const uint8_t C = A2;
 
+int p1Choice, p2Choice ;
+
 // define the wiring of the inputs
 const int POTENTIOMETER_PIN_NUMBER = 5;
 const int BUTTON_PIN_NUMBER = 10;
@@ -1286,7 +1288,7 @@ int Round( int input)
 
 //************************************************************************************************************************
 
-int p1Choice, p2Choice ;
+
 
 
 class Game{
@@ -2320,7 +2322,7 @@ void loop() {
   bool button_pressed_player2 = (digitalRead(11) == HIGH);
 
   
-  //game.update(potentiometer_value_player1, button_pressed_player1, potentiometer_value_player2, button_pressed_player2);
+  game.update(potentiometer_value_player1, button_pressed_player1, potentiometer_value_player2, button_pressed_player2);
 
   //time management segment
   if(GameTimeManager - GameTime >= 60000 && GameTimeManager - GameTime <= 60012)
