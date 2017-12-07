@@ -2331,7 +2331,7 @@ void setup() {
   int p1selection, p2selection;//variables relating to the pot1 and the pot2 values
   bool p1 = false , p2 = false;//checks if the button has been pressed
   
-  //IntroSequence_SpaceWars();
+  IntroSequence_SpaceWars();
   /*
   Print_P1();
   delay(2000);
@@ -2428,6 +2428,7 @@ void loop() {
   //stops loop method once game is over
    if(GAMEOVER)
   {
+    game_over();
     exit(0) ;
   }
   
@@ -2659,7 +2660,7 @@ void Classic_Selection()
    // player chose the classic player
    matrix.fillScreen(BLACK.to_333());
    
-   matrix.drawRect(0, 4, 7, 6, matrix.Color333(4, 4, 0));
+   matrix.drawRect(0, 4, 7, 6, matrix.Color333(4, 4, 4));
    
 
   //Draws an arrow on the bottom
@@ -2668,43 +2669,47 @@ void Classic_Selection()
   matrix.drawLine(2,12, 4,12, matrix.Color333(4, 0, 0));
   matrix.drawLine(1,13, 5,13, matrix.Color333(4, 0, 0));
   matrix.drawLine(3,14, 3,15, matrix.Color333(4, 0, 0));
-
+  
+  // Draws Classic Player
   matrix.drawLine(2,7, 4,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(3,6,WHITE.to_333());
+  matrix.drawPixel(3,6,YELLOW.to_333());
+  matrix.drawPixel(3,7,AQUA.to_333());
 
   // Draws Slim Shady
   
   matrix.drawLine(15,7, 16,7, matrix.Color333(0, 4, 4));
-  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 4));
+  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 0));
   
 
   // Draws Big Shaq
   
-  matrix.drawLine(26,7, 29,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(26,6,WHITE.to_333());
-  matrix.drawPixel(29,6,WHITE.to_333());
+  matrix.drawLine(26,7, 29,7, matrix.Color333(4, 4, 0));
+  matrix.drawPixel(26,6,YELLOW.to_333());
+  matrix.drawPixel(29,6,YELLOW.to_333());
+  matrix.drawPixel(27,7,AQUA.to_333());
+  matrix.drawPixel(28,7,AQUA.to_333());
   
   //Draws roman numeral 1
-  matrix.drawLine(2,0, 4,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(3,1,ORANGE.to_333());
-  matrix.drawLine(2,2, 4,2, matrix.Color333(4, 2, 0));
+  matrix.drawLine(2,0, 4,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(3,1,BLUE.to_333());
+  matrix.drawLine(2,2, 4,2, matrix.Color333(0, 0, 4));
 
   //Draws roman numeral 2
-  matrix.drawLine(14,0, 16,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(15,1,ORANGE.to_333());
-  matrix.drawLine(14,2, 16,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(16,1,ORANGE.to_333());
-  matrix.drawPixel(17,0,ORANGE.to_333());
-  matrix.drawPixel(17,2,ORANGE.to_333());
+  matrix.drawLine(14,0, 16,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(15,1,BLUE.to_333());
+  matrix.drawLine(14,2, 16,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(16,1,BLUE.to_333());
+  matrix.drawPixel(17,0,BLUE.to_333());
+  matrix.drawPixel(17,2,BLUE.to_333());
 
   //Draws roman numeral 3
-  matrix.drawLine(25,0, 27,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(26,1,ORANGE.to_333());
-  matrix.drawLine(25,2, 27,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(27,1,ORANGE.to_333());
-  matrix.drawLine(28,0, 28,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(29,0,ORANGE.to_333());
-  matrix.drawPixel(29,2,ORANGE.to_333());
+  matrix.drawLine(25,0, 27,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(26,1,BLUE.to_333());
+  matrix.drawLine(25,2, 27,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(27,1,BLUE.to_333());
+  matrix.drawLine(28,0, 28,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(29,0,BLUE.to_333());
+  matrix.drawPixel(29,2,BLUE.to_333());
 
   
 
@@ -2715,14 +2720,12 @@ void Classic_Selection()
  
  }
 
-
-
-void SlimShady_Selection()
+ void SlimShady_Selection()
  {
    matrix.fillScreen(BLACK.to_333());
   // Draws slim shady player and highlights the box showing
   // player chose slim shady
-  matrix.drawRect(12, 4, 8, 6, matrix.Color333(4, 4, 0));
+  matrix.drawRect(12, 4, 8, 6, matrix.Color333(4, 4, 4));
   
 
   //Draws an arrow on the bottom
@@ -2732,104 +2735,48 @@ void SlimShady_Selection()
   matrix.drawLine(13,13, 17,13, matrix.Color333(4, 0, 0));
   matrix.drawLine(15,14, 15,15, matrix.Color333(4, 0, 0));
 
- matrix.drawLine(2,7, 4,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(3,6,WHITE.to_333());
-
-  // Draws Slim Shady
-  
-  matrix.drawLine(15,7, 16,7, matrix.Color333(0, 4, 4));
-  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 4));
   
 
-  // Draws Big Shaq
-  
-  matrix.drawLine(26,7, 29,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(26,6,WHITE.to_333());
-  matrix.drawPixel(29,6,WHITE.to_333());
-  
-  //Draws roman numeral 1
-  matrix.drawLine(2,0, 4,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(3,1,ORANGE.to_333());
-  matrix.drawLine(2,2, 4,2, matrix.Color333(4, 2, 0));
-
-  //Draws roman numeral 2
-  matrix.drawLine(14,0, 16,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(15,1,ORANGE.to_333());
-  matrix.drawLine(14,2, 16,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(16,1,ORANGE.to_333());
-  matrix.drawPixel(17,0,ORANGE.to_333());
-  matrix.drawPixel(17,2,ORANGE.to_333());
-
-  //Draws roman numeral 3
-  matrix.drawLine(25,0, 27,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(26,1,ORANGE.to_333());
-  matrix.drawLine(25,2, 27,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(27,1,ORANGE.to_333());
-  matrix.drawLine(28,0, 28,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(29,0,ORANGE.to_333());
-  matrix.drawPixel(29,2,ORANGE.to_333());
-
-  
-
-  //Draws the line barriers between the options 
-  matrix.drawLine(9,0, 9, 15, matrix.Color333(4, 0, 4));
-  matrix.drawLine(22,0, 22, 15, matrix.Color333(4, 0, 4));
-  
-
- }
-
-
-void BigShaq_Selection()
- {
-  matrix.fillScreen(BLACK.to_333());
-
-  // Draws Big Shaq player and highlights the box showing
-   // player chose Big Shaq
-    
-  matrix.drawRect(24, 4, 8, 6, matrix.Color333(4, 4, 0));
-
-  //Draws an arrow on the bottom
-
-  matrix.drawPixel(27,11,RED.to_333());
-  matrix.drawLine(26,12, 28,12, matrix.Color333(4, 0, 0));
-  matrix.drawLine(25,13, 29,13, matrix.Color333(4, 0, 0));
-  matrix.drawLine(27,14, 27,15, matrix.Color333(4, 0, 0));
+  // Draws Classic Player
   matrix.drawLine(2,7, 4,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(3,6,WHITE.to_333());
+  matrix.drawPixel(3,6,YELLOW.to_333());
+  matrix.drawPixel(3,7,AQUA.to_333());
 
   // Draws Slim Shady
   
   matrix.drawLine(15,7, 16,7, matrix.Color333(0, 4, 4));
-  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 4));
+  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 0));
   
 
   // Draws Big Shaq
   
-  matrix.drawLine(26,7, 29,7, matrix.Color333(0, 4, 4));
-  matrix.drawPixel(26,6,WHITE.to_333());
-  matrix.drawPixel(29,6,WHITE.to_333());
+  matrix.drawLine(26,7, 29,7, matrix.Color333(4, 4, 0));
+  matrix.drawPixel(26,6,YELLOW.to_333());
+  matrix.drawPixel(29,6,YELLOW.to_333());
+  matrix.drawPixel(27,7,AQUA.to_333());
+  matrix.drawPixel(28,7,AQUA.to_333());
   
   //Draws roman numeral 1
-  matrix.drawLine(2,0, 4,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(3,1,ORANGE.to_333());
-  matrix.drawLine(2,2, 4,2, matrix.Color333(4, 2, 0));
+  matrix.drawLine(2,0, 4,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(3,1,BLUE.to_333());
+  matrix.drawLine(2,2, 4,2, matrix.Color333(0, 0, 4));
 
   //Draws roman numeral 2
-  matrix.drawLine(14,0, 16,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(15,1,ORANGE.to_333());
-  matrix.drawLine(14,2, 16,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(16,1,ORANGE.to_333());
-  matrix.drawPixel(17,0,ORANGE.to_333());
-  matrix.drawPixel(17,2,ORANGE.to_333());
+  matrix.drawLine(14,0, 16,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(15,1,BLUE.to_333());
+  matrix.drawLine(14,2, 16,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(16,1,BLUE.to_333());
+  matrix.drawPixel(17,0,BLUE.to_333());
+  matrix.drawPixel(17,2,BLUE.to_333());
 
   //Draws roman numeral 3
-  matrix.drawLine(25,0, 27,0, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(26,1,ORANGE.to_333());
-  matrix.drawLine(25,2, 27,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(27,1,ORANGE.to_333());
-  matrix.drawLine(28,0, 28,2, matrix.Color333(4, 2, 0));
-  matrix.drawPixel(29,0,ORANGE.to_333());
-  matrix.drawPixel(29,2,ORANGE.to_333());
+  matrix.drawLine(25,0, 27,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(26,1,BLUE.to_333());
+  matrix.drawLine(25,2, 27,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(27,1,BLUE.to_333());
+  matrix.drawLine(28,0, 28,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(29,0,BLUE.to_333());
+  matrix.drawPixel(29,2,BLUE.to_333());
 
   
 
@@ -2837,6 +2784,71 @@ void BigShaq_Selection()
   matrix.drawLine(9,0, 9, 15, matrix.Color333(4, 0, 4));
   matrix.drawLine(22,0, 22, 15, matrix.Color333(4, 0, 4));
  
+ }
+
+ void BigShaq_Selection()
+ {
+  matrix.fillScreen(BLACK.to_333());
+
+  // Draws Big Shaq player and highlights the box showing
+   // player chose Big Shaq
+    
+  matrix.drawRect(24, 4, 8, 6, matrix.Color333(4, 4, 4));
+
+  //Draws an arrow on the bottom
+
+  matrix.drawPixel(27,11,RED.to_333());
+  matrix.drawLine(26,12, 28,12, matrix.Color333(4, 0, 0));
+  matrix.drawLine(25,13, 29,13, matrix.Color333(4, 0, 0));
+  matrix.drawLine(27,14, 27,15, matrix.Color333(4, 0, 0));
+
+
+  // Draws Classic Player
+  matrix.drawLine(2,7, 4,7, matrix.Color333(0, 4, 4));
+  matrix.drawPixel(3,6,YELLOW.to_333());
+  matrix.drawPixel(3,7,AQUA.to_333());
+
+  // Draws Slim Shady
+  
+  matrix.drawLine(15,7, 16,7, matrix.Color333(0, 4, 4));
+  matrix.drawLine(15,6, 16,6, matrix.Color333(4, 4, 0));
+  
+
+  // Draws Big Shaq
+  
+  matrix.drawLine(26,7, 29,7, matrix.Color333(4, 4, 0));
+  matrix.drawPixel(26,6,YELLOW.to_333());
+  matrix.drawPixel(29,6,YELLOW.to_333());
+  matrix.drawPixel(27,7,AQUA.to_333());
+  matrix.drawPixel(28,7,AQUA.to_333());
+  
+  //Draws roman numeral 1
+  matrix.drawLine(2,0, 4,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(3,1,BLUE.to_333());
+  matrix.drawLine(2,2, 4,2, matrix.Color333(0, 0, 4));
+
+  //Draws roman numeral 2
+  matrix.drawLine(14,0, 16,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(15,1,BLUE.to_333());
+  matrix.drawLine(14,2, 16,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(16,1,BLUE.to_333());
+  matrix.drawPixel(17,0,BLUE.to_333());
+  matrix.drawPixel(17,2,BLUE.to_333());
+
+  //Draws roman numeral 3
+  matrix.drawLine(25,0, 27,0, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(26,1,BLUE.to_333());
+  matrix.drawLine(25,2, 27,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(27,1,BLUE.to_333());
+  matrix.drawLine(28,0, 28,2, matrix.Color333(0, 0, 4));
+  matrix.drawPixel(29,0,BLUE.to_333());
+  matrix.drawPixel(29,2,BLUE.to_333());
+
+  
+
+  //Draws the line barriers between the options 
+  matrix.drawLine(9,0, 9, 15, matrix.Color333(4, 0, 4));
+  matrix.drawLine(22,0, 22, 15, matrix.Color333(4, 0, 4));
  }
 
 
@@ -2882,7 +2894,234 @@ void Print_P2()
 
 
 
+void IntroSequence_SpaceWars()
+{
+  matrix.setCursor(1,0);
+  matrix.setTextSize(1);
+
+  /*printing TEAM OMEGA alphabet by alphabet
+  with a delay for an effect and also our team logo :)*/
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("T");
+  delay(80);
+  
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("E");
+  delay(80);
+  
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("A");
+  delay(80);
+  
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.print("M");
+  delay(80);
+
+  matrix.setCursor(1,9);
+  matrix.setTextSize(1);
+
+  //Printing OMEGA
+  matrix.setTextColor(matrix.Color333(4,0,4));
+  matrix.print("O");
+  delay(80);
+  matrix.setTextColor(matrix.Color333(4,0,4));
+  matrix.print("M");
+  delay(80);
+  matrix.setTextColor(matrix.Color333(4,0,4));
+  matrix.print("E");
+  delay(80);
+  matrix.setTextColor(matrix.Color333(4,0,4));
+  matrix.print("G");
+  delay(80);
+  matrix.setTextColor(matrix.Color333(4,0,4));
+  matrix.print("A");
+  delay(250);
+
+  //places omega symbol
+  matrix.drawPixel(25,6,RED.to_333());
+  matrix.drawPixel(31,6,RED.to_333());
+  delay(50);
+  matrix.drawPixel(26,6,ORANGE.to_333());
+  matrix.drawPixel(30,6,ORANGE.to_333());
+  delay(50);
+  matrix.drawPixel(27,6,YELLOW.to_333());
+  matrix.drawPixel(29,6,YELLOW.to_333());
+  delay(50);
+  
+  matrix.drawPixel(26,5,LIME.to_333());
+  matrix.drawPixel(30,5,LIME.to_333());
+  delay(50);
+  matrix.drawPixel(25,4,GREEN.to_333());
+  matrix.drawPixel(31,4,GREEN.to_333());
+  delay(50);
+
+  matrix.drawPixel(25,3,AQUA.to_333());
+  matrix.drawPixel(31,3,AQUA.to_333());
+  delay(50);
+
+  matrix.drawPixel(26,2,BLUE.to_333());
+  matrix.drawPixel(30,2,BLUE.to_333());
+  delay(50);
+
+  matrix.drawPixel(27,1,PURPLE.to_333());
+  matrix.drawPixel(29,1,PURPLE.to_333());
+  delay(50);
+  matrix.drawPixel(28,1,PURPLE.to_333());
+
+
+  /*following code adds a color changing effect to the 
+   * omega logo
+   */
+  matrix.drawPixel(30,6,RED.to_333());
+  delay(40);
+  matrix.drawPixel(29,6,RED.to_333());
+   delay(40);
+  matrix.drawPixel(30,5,RED.to_333());
+   delay(40);
+  matrix.drawPixel(31,4,RED.to_333());
+   delay(40);
+  matrix.drawPixel(31,3,RED.to_333());
+   delay(40);
+  matrix.drawPixel(30,2,RED.to_333());
+   delay(40);
+  matrix.drawPixel(29,1,RED.to_333());
+   delay(40);
+  matrix.drawPixel(28,1,RED.to_333());
+   delay(40);
+  matrix.drawPixel(27,1,RED.to_333());
+   delay(40);
+  matrix.drawPixel(26,2,RED.to_333());
+   delay(40);
+  matrix.drawPixel(25,3,RED.to_333());
+   delay(40);
+  matrix.drawPixel(25,4,RED.to_333());
+   delay(40);
+  matrix.drawPixel(26,5,RED.to_333());
+   delay(40);
+  matrix.drawPixel(27,6,RED.to_333());
+   delay(40);
+  matrix.drawPixel(26,6,RED.to_333());
+
+
+  matrix.drawPixel(25,6,AQUA.to_333());
+  matrix.drawPixel(26,6,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(27,6,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(26,5,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(25,4,AQUA.to_333());
+  delay(40); 
+  matrix.drawPixel(25,3,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(26,2,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(27,1,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(28,1,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(29,1,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(30,2,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(31,3,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(31,4,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(30,5,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(29,6,AQUA.to_333());
+  delay(40);
+  matrix.drawPixel(30,6,BLUE.to_333());
+  delay(40);
+  matrix.drawPixel(31,6,AQUA.to_333());
+  delay(40);
+  
+  delay(500);
+
+  for(int i = 2; i <= 32; i++)
+  { 
+  matrix.fillRect(1,0,i,16,BLACK.to_333());
+  delay(22);
+  }
+  
+  delay(100);
+  
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  
+
+
+
+
+  
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.fillRect(0,0,31,9,WHITE.to_333());
+
+  
+
+  matrix.setCursor(1, 1);
+  
+  matrix.setTextColor(matrix.Color333(0, 0, 0));
+  matrix.print("S");
+  delay(200);
+  
+  matrix.setTextColor(matrix.Color333(0, 0, 0));
+  matrix.print("P");
+  delay(200);
+  
+  matrix.setTextColor(matrix.Color333(0, 0, 0));
+  matrix.print("A");
+  delay(200);
+  
+  matrix.setTextColor(matrix.Color333(0, 0, 0));
+  matrix.print("C");
+  delay(200);
+  
+  matrix.setTextColor(matrix.Color333(0, 0, 0));
+  matrix.print("E");
+  delay(200);
+  
+  
+  matrix.setCursor(4,9);
+  matrix.setTextSize(1);
+
+
+
+  //Printing BRAWL
+  matrix.setTextColor(matrix.Color333(7, 7, 7));
+  matrix.print("W");
+  delay(150);
+  matrix.setTextColor(matrix.Color333(7, 7, 7));
+  matrix.print("A");
+  delay(150);
+  matrix.setTextColor(matrix.Color333(7, 7, 7));
+  matrix.print("R");
+  delay(150);
+  matrix.setTextColor(matrix.Color333(7, 7, 7));
+  matrix.print("S");
+  delay(3000);
+
+
+  for(int i = 2; i <= 32; i++)
+  { 
+  matrix.fillRect(1,0,i,16,BLACK.to_333());
+  delay(22);
+  }
+  
+  delay(100);
+  
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  
+
+ // matrix.fillScreen(matrix.Color333(0, 0, 0));
+  //matrix.setTextColor(matrix.Color333(7, 7, 7));
+  //matrix.print("L");
+  //delay(550);
+
+
+}
+
 
 //lives returner left
   
-
