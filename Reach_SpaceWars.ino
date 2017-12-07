@@ -3059,7 +3059,7 @@ void IntroSequence_SpaceWars()
   
   matrix.fillScreen(matrix.Color333(0, 0, 0));
 
-  matrix.fillRect(0,0,31,9,WHITE.to_333());
+  matrix.fillRect(0,0,32,9,WHITE.to_333());
 
   
 
@@ -3106,9 +3106,9 @@ void IntroSequence_SpaceWars()
   delay(3000);
 
 
-  for(int i = 2; i <= 32; i++)
+  for(int i = 1; i <= 32; i++)
   { 
-  matrix.fillRect(1,0,i,16,BLACK.to_333());
+  matrix.fillRect(0,0,i,16,BLACK.to_333());
   delay(22);
   }
   
