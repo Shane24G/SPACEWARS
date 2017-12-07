@@ -12,13 +12,12 @@ const uint8_t A = A0;
 const uint8_t B = A1;
 const uint8_t C = A2;
 
-int p1Choice, p2Choice ;
-
 // define the wiring of the inputs
 const int POTENTIOMETER_PIN_NUMBER = 5;
 const int BUTTON_PIN_NUMBER = 10;
 //changes to be added
 const int NUM_BULLETS = 16;
+int p1Choice = 2, p2Choice = 1 ;
 
 
 // global constant for the number of Invaders in the game
@@ -210,7 +209,11 @@ class SlimShady_Player1 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+      matrix.drawPixel(0, y, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+1, BLACK.to_333()) ;
+        //drawing second column with PURPLE color
+        matrix.drawPixel(1, y, BLACK.to_333()) ;
+        matrix.drawPixel(1, y+1, BLACK.to_333()) ;
     }
 
 
@@ -239,12 +242,12 @@ class SlimShady_Player1 {
         draw_WRT_lives(0,0, color);
       }
 
-      else if(y >= 15)
+      else if(y >= 14)
       {
-        draw_WRT_lives(0,15, color);
+        draw_WRT_lives(0,14, color);
       }
 
-      else if(y >= 0 && y <= 15)
+      else if(y >= 0 && y <= 14)
       {
         draw_WRT_lives(0,y, color);
       }
@@ -255,6 +258,9 @@ class SlimShady_Player1 {
       int xC1 = 0, xC2 = 1;
       int yR1 = y_arg, yR2 = y_arg + 1;
       matrix.setCursor(0, y_arg);
+      
+        
+      
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
@@ -369,7 +375,12 @@ class SlimShady_Player2 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+      //change made
+      matrix.drawPixel(31, y, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+1, BLACK.to_333()) ;
+        //drawing second column with BLACK color
+        matrix.drawPixel(30, y, BLACK.to_333()) ;
+        matrix.drawPixel(30, y+1, BLACK.to_333()) ;
     }
 
 
@@ -397,12 +408,12 @@ class SlimShady_Player2 {
         draw_WRT_lives(30, 0, color);
       }
 
-      else if(y >= 15)
+      else if(y >= 14)
       {
-        draw_WRT_lives(30, 15, color);
+        draw_WRT_lives(30, 14, color);
       }
 
-      else if(y >= 0 && y <= 15)
+      else if(y >= 0 && y <= 14)
       {
         draw_WRT_lives(30, y, color);
       }
@@ -415,51 +426,51 @@ class SlimShady_Player2 {
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with PURPLE color
-        matrix.drawPixel(1, yR1, PURPLE.to_333()) ;
-        matrix.drawPixel(1, yR2, PURPLE.to_333()) ;
+        matrix.drawPixel(30, yR1, PURPLE.to_333()) ;
+        matrix.drawPixel(30, yR2, PURPLE.to_333()) ;
         
       }
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with BLUE color
-        matrix.drawPixel(1, yR1, BLUE.to_333()) ;
-        matrix.drawPixel(1, yR2, BLUE.to_333()) ;
+        matrix.drawPixel(30, yR1, BLUE.to_333()) ;
+        matrix.drawPixel(30, yR2, BLUE.to_333()) ;
         
       }
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with LIME color
-        matrix.drawPixel(1, yR1, LIME.to_333()) ;
-        matrix.drawPixel(1, yR2, LIME.to_333()) ;
+        matrix.drawPixel(30, yR1, LIME.to_333()) ;
+        matrix.drawPixel(30, yR2, LIME.to_333()) ;
         
       }
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with ORANGE color
-        matrix.drawPixel(1, yR1, ORANGE.to_333()) ;
-        matrix.drawPixel(1, yR2, ORANGE.to_333()) ;
+        matrix.drawPixel(30, yR1, ORANGE.to_333()) ;
+        matrix.drawPixel(30, yR2, ORANGE.to_333()) ;
         
       }
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with RED color
-        matrix.drawPixel(1, yR1, RED.to_333()) ;
-        matrix.drawPixel(1, yR2, RED.to_333()) ;
+        matrix.drawPixel(30, yR1, RED.to_333()) ;
+        matrix.drawPixel(30, yR2, RED.to_333()) ;
         
       }
 
@@ -467,11 +478,11 @@ class SlimShady_Player2 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR2, color.to_333()) ;
         //drawing second column with RED color
-        matrix.drawPixel(1, yR1, WHITE.to_333()) ;
-        matrix.drawPixel(1, yR2, WHITE.to_333()) ;
+        matrix.drawPixel(30, yR1, WHITE.to_333()) ;
+        matrix.drawPixel(30, yR2, WHITE.to_333()) ;
      }
     }
 };
@@ -479,7 +490,7 @@ class SlimShady_Player2 {
 
 
 //*****************************************************************************************************
-//BigShaq code incoming
+
 class BigShaq_Player1 {
    public:
 
@@ -529,7 +540,14 @@ class BigShaq_Player1 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+      //change made
+      matrix.drawPixel(0, y, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+1, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+2, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+3, BLACK.to_333()) ;
+        //drawing second column with BLACK color
+        matrix.drawPixel(1, y, BLACK.to_333()) ;
+        matrix.drawPixel(1, y+3, BLACK.to_333()) ;
     }
 
   private:
@@ -573,10 +591,10 @@ class BigShaq_Player1 {
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, PURPLE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(1, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(1, yR4, PURPLE.to_333()) ;
@@ -585,10 +603,10 @@ class BigShaq_Player1 {
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, BLUE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, BLUE.to_333()) ;
         //drawing second column with BLUE color
         matrix.drawPixel(1, yR1, BLUE.to_333()) ;
         matrix.drawPixel(1, yR4, BLUE.to_333()) ;
@@ -597,10 +615,10 @@ class BigShaq_Player1 {
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, LIME.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, LIME.to_333()) ;
         //drawing second column with LIME color
         matrix.drawPixel(1, yR1, LIME.to_333()) ;
         matrix.drawPixel(1, yR4, LIME.to_333()) ;
@@ -609,10 +627,10 @@ class BigShaq_Player1 {
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, ORANGE.to_333()) ;
         //drawing second column with ORANGE color
         matrix.drawPixel(1, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(1, yR4, ORANGE.to_333()) ;
@@ -621,10 +639,10 @@ class BigShaq_Player1 {
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, RED.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, RED.to_333()) ;
         //drawing second column with RED color
         matrix.drawPixel(1, yR1, RED.to_333()) ;
         matrix.drawPixel(1, yR4, RED.to_333()) ;
@@ -635,10 +653,10 @@ class BigShaq_Player1 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, WHITE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
         matrix.drawPixel(0, yR3, color.to_333()) ;
-        matrix.drawPixel(0, yR4, color.to_333()) ;
+        matrix.drawPixel(0, yR4, WHITE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(1, yR1, WHITE.to_333()) ;
         matrix.drawPixel(1, yR4, WHITE.to_333()) ;
@@ -694,7 +712,15 @@ class BigShaq_Player2 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+
+      //change made
+       matrix.drawPixel(31, y, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+1, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+2, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+3, BLACK.to_333()) ;
+        //drawing second column with BLACK color
+        matrix.drawPixel(30, y, BLACK.to_333()) ;
+        matrix.drawPixel(30, y+3, BLACK.to_333()) ;
     }
 
   private:
@@ -712,7 +738,7 @@ class BigShaq_Player2 {
     void draw_with_rgb(Color color) {
 
 
-      int xC1 = 0, xC2 = 1;
+      int xC1 = 31, xC2 = 30;
       int yR1 = y, yR2 = y + 1, yR3 = y + 2, yR4 = y + 3;
 
       if(y <= 0)
@@ -732,16 +758,16 @@ class BigShaq_Player2 {
     }
     void draw_WRT_lives(int x_arg,int y_arg, Color color)
     {
-      int xC1 = 0, xC2 = 1;
+      int xC1 = 31, xC2 = 30;
       int yR1 = y_arg, yR2 = y_arg + 1, yR3 = y_arg + 2, yR4 = y_arg + 3;
       matrix.setCursor(0, y_arg);
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, PURPLE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(30, yR4, PURPLE.to_333()) ;
@@ -750,10 +776,10 @@ class BigShaq_Player2 {
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, BLUE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, BLUE.to_333()) ;
         //drawing second column with BLUE color
         matrix.drawPixel(30, yR1, BLUE.to_333()) ;
         matrix.drawPixel(30, yR4, BLUE.to_333()) ;
@@ -762,10 +788,10 @@ class BigShaq_Player2 {
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, LIME.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, LIME.to_333()) ;
         //drawing second column with LIME color
         matrix.drawPixel(30, yR1, LIME.to_333()) ;
         matrix.drawPixel(30, yR4, LIME.to_333()) ;
@@ -774,10 +800,10 @@ class BigShaq_Player2 {
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, ORANGE.to_333()) ;
         //drawing second column with ORANGE color
         matrix.drawPixel(30, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(30, yR4, ORANGE.to_333()) ;
@@ -786,10 +812,10 @@ class BigShaq_Player2 {
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, RED.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, RED.to_333()) ;
         //drawing second column with RED color
         matrix.drawPixel(30, yR1, RED.to_333()) ;
         matrix.drawPixel(30, yR4, RED.to_333()) ;
@@ -800,10 +826,10 @@ class BigShaq_Player2 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, WHITE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
         matrix.drawPixel(31, yR3, color.to_333()) ;
-        matrix.drawPixel(31, yR4, color.to_333()) ;
+        matrix.drawPixel(31, yR4, WHITE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR1, WHITE.to_333()) ;
         matrix.drawPixel(30, yR4, WHITE.to_333()) ;
@@ -864,7 +890,12 @@ class Classic_Player1 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+      //change made
+      matrix.drawPixel(0, y, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+1, BLACK.to_333()) ;
+        matrix.drawPixel(0, y+2, BLACK.to_333()) ;
+        //drawing second column with BLACK color
+        matrix.drawPixel(1, y+1, BLACK.to_333()) ;
     }
 
   private:
@@ -908,9 +939,9 @@ class Classic_Player1 {
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, PURPLE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(1, yR2, PURPLE.to_333()) ;
        
@@ -918,9 +949,9 @@ class Classic_Player1 {
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, BLUE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, BLUE.to_333()) ;
         
         //drawing second column with BLUE color
         matrix.drawPixel(1, yR2, BLUE.to_333()) ;
@@ -930,9 +961,9 @@ class Classic_Player1 {
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, LIME.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, LIME.to_333()) ;
         
         //drawing second column with LIME color
         matrix.drawPixel(1, yR2, LIME.to_333()) ;
@@ -942,9 +973,9 @@ class Classic_Player1 {
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, ORANGE.to_333()) ;
         
         //drawing second column with ORANGE color
         matrix.drawPixel(1, yR2, ORANGE.to_333()) ;
@@ -954,9 +985,9 @@ class Classic_Player1 {
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, RED.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, RED.to_333()) ;
        
         //drawing second column with RED color
         matrix.drawPixel(1, yR2, RED.to_333()) ;
@@ -968,9 +999,9 @@ class Classic_Player1 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(0, yR1, color.to_333()) ;
+        matrix.drawPixel(0, yR1, WHITE.to_333()) ;
         matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR3, WHITE.to_333()) ;
         
         //drawing second column with PURPLE color
         matrix.drawPixel(1, yR2, WHITE.to_333()) ;
@@ -1028,7 +1059,11 @@ class Classic_Player2 {
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
-      draw_with_rgb(BLACK);
+       matrix.drawPixel(31, y, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+1, BLACK.to_333()) ;
+        matrix.drawPixel(31, y+2, BLACK.to_333()) ;
+        //drawing second column with BLACK color
+        matrix.drawPixel(30, y+1, BLACK.to_333()) ;
     }
 
   private:
@@ -1072,9 +1107,9 @@ class Classic_Player2 {
       if(lives == 5)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, PURPLE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, PURPLE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR2, PURPLE.to_333()) ;
        
@@ -1082,9 +1117,9 @@ class Classic_Player2 {
       else if(lives == 4)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, BLUE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, BLUE.to_333()) ;
         
         //drawing second column with BLUE color
         matrix.drawPixel(30, yR2, BLUE.to_333()) ;
@@ -1094,9 +1129,9 @@ class Classic_Player2 {
       else if(lives == 3)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, LIME.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, LIME.to_333()) ;
         
         //drawing second column with LIME color
         matrix.drawPixel(30, yR2, LIME.to_333()) ;
@@ -1106,9 +1141,9 @@ class Classic_Player2 {
       else if(lives == 2)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, ORANGE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, ORANGE.to_333()) ;
         
         //drawing second column with ORANGE color
         matrix.drawPixel(30, yR2, ORANGE.to_333()) ;
@@ -1118,9 +1153,9 @@ class Classic_Player2 {
       else if(lives == 1)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, RED.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, RED.to_333()) ;
        
         //drawing second column with RED color
         matrix.drawPixel(30, yR2, RED.to_333()) ;
@@ -1132,9 +1167,9 @@ class Classic_Player2 {
      else if(lives == 6)
      {
       //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
+        matrix.drawPixel(31, yR1, WHITE.to_333()) ;
         matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR3, WHITE.to_333()) ;
         
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR2, WHITE.to_333()) ;
@@ -1287,7 +1322,6 @@ int Round( int input)
 
 
 //************************************************************************************************************************
-
 
 
 
@@ -1550,12 +1584,19 @@ class Game{
           if(time - t1_move >= 100)
           //bullet movement speed
           {
+            if(p1[i].get_x() >= 31)
+            {  
+             p1[i].reset();
+            }
+            else
+            {
              p1[i].p1move() ;
              //will move the bullet forward
              p1[i].draw() ;
              //will draw the new bullet
              t1_move = millis() ;
              //changes the movement value of t1
+            }
           }
         }
         
@@ -1614,12 +1655,19 @@ class Game{
           if(time - t1_move >= 100)
           //bullet movement speed
           {
+            if(p1[i].get_x() >= 31)
+            {  
+             p1[i].reset();
+            }
+            else
+            {
              p1[i].p1move() ;
              //will move the bullet forward
              p1[i].draw() ;
              //will draw the new bullet
              t1_move = millis() ;
              //changes the movement value of t1
+            }
           }
         }
         
@@ -1666,15 +1714,23 @@ class Game{
          if( p1[i].has_been_fired())
         //will first check if the bullet at index 'i' has been fired already; if yes, then it will move the ball
         {
+          
           if(time - t1_move >= 100)
           //bullet movement speed
           {
+            if(p1[i].get_x() >= 31)
+            {  
+             p1[i].reset();
+            }
+            else
+            {
              p1[i].p1move() ;
              //will move the bullet forward
              p1[i].draw() ;
              //will draw the new bullet
              t1_move = millis() ;
              //changes the movement value of t1
+            }
           }
         }
         
@@ -1737,13 +1793,21 @@ void BulletMovement_Player2(bool button_pressed_p2)
         //will first check if the ball has been fired already; if yes, then it will move the ball
         {
           if(time - t2_move >= 100)
+          //bullet movement speed
           {
+            if(p2[i].get_x() >= 31)
+            {  
+             p2[i].reset();
+            }
+            else
+            {
              p2[i].p2move() ;
              //will move the bullet forward
              p2[i].draw() ;
-              //will draw the new bullet
+             //will draw the new bullet
              t2_move = millis() ;
-             //changes the movement value of t2
+             //changes the movement value of t1
+            }
           }
         }
         
@@ -1800,13 +1864,21 @@ void BulletMovement_Player2(bool button_pressed_p2)
         //will first check if the ball has been fired already; if yes, then it will move the ball
         {
           if(time - t2_move >= 100)
+          //bullet movement speed
           {
+            if(p2[i].get_x() >= 31)
+            {  
+             p2[i].reset();
+            }
+            else
+            {
              p2[i].p2move() ;
              //will move the bullet forward
              p2[i].draw() ;
-              //will draw the new bullet
+             //will draw the new bullet
              t2_move = millis() ;
-             //changes the movement value of t2
+             //changes the movement value of t1
+            }
           }
         }
         
@@ -1856,12 +1928,19 @@ void BulletMovement_Player2(bool button_pressed_p2)
           if(time - t2_move >= 100)
           //bullet movement speed
           {
+            if(p2[i].get_x() >= 31)
+            {  
+             p2[i].reset();
+            }
+            else
+            {
              p2[i].p2move() ;
              //will move the bullet forward
              p2[i].draw() ;
              //will draw the new bullet
              t2_move = millis() ;
              //changes the movement value of t1
+            }
           }
         }
         
@@ -2245,7 +2324,7 @@ void SsHit(int pnum, int xpos, int ypos, int cnum)
 void setup() {
   Serial.begin(9600);
   pinMode(10, INPUT);//button of player 1
-  pinMode(11, INPUT);//button of player 2
+  pinMode(10, INPUT);//button of player 2
   matrix.begin();
   
   int pot1, pot2;//readers for the potentiometer values for the selection
@@ -2253,7 +2332,7 @@ void setup() {
   bool p1 = false , p2 = false;//checks if the button has been pressed
   
   //IntroSequence_SpaceWars();
-  
+  /*
   Print_P1();
   delay(2000);
   
@@ -2302,7 +2381,7 @@ void setup() {
     p2 = (digitalRead(11) == HIGH);
     
   }while(p2 != true);
-  p2Choice = p2selection;
+  p2Choice = p2selection;*/
   print_ready_sequence();
   game.setup();
   
