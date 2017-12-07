@@ -2455,6 +2455,10 @@ void stadium(int time)
   //Draws Lines on both sides to set the stadium
   matrix.drawLine(8,0, 8, 15, matrix.Color333(4, 4, 4));
   matrix.drawLine(23,0, 23, 15, matrix.Color333(4, 4, 4));
+  matrix.drawLine(14,0, 13, 15, matrix.Color333(0, 0, 0));
+  matrix.drawLine(15,0, 13, 15, matrix.Color333(0, 0, 0));
+  matrix.drawLine(16,0, 13, 15, matrix.Color333(0, 0, 0));
+  matrix.drawLine(17,0, 13, 15, matrix.Color333(0, 0, 0));
 
   if(time == 0)
   { 
