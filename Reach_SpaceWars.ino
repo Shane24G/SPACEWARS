@@ -17,7 +17,7 @@ const int POTENTIOMETER_PIN_NUMBER = 5;
 const int BUTTON_PIN_NUMBER = 10;
 //changes to be added
 const int NUM_BULLETS = 16;
-int p1Choice = 2, p2Choice = 1 ;
+int p1Choice = 0, p2Choice = 0  ;
 
 
 // global constant for the number of Invaders in the game
@@ -105,7 +105,7 @@ class Cannonball {
     // Modifies: y, fired
     void p1move() {
      erase() ;
-     if(x >= 0 && x < 32)
+     if(x >= 0 && x < 31)
        {
         fired = true ;
          x++ ;
@@ -118,7 +118,7 @@ class Cannonball {
 
     void p2move() {
      erase() ;
-     if(x >= 0 && x < 32)
+     if(x > 0 && x < 31)
        {
         fired = true ;
          x-- ;
@@ -2332,7 +2332,7 @@ void setup() {
   bool p1 = false , p2 = false;//checks if the button has been pressed
   
   IntroSequence_SpaceWars();
-  /*
+  
   Print_P1();
   delay(2000);
   
@@ -2381,7 +2381,7 @@ void setup() {
     p2 = (digitalRead(11) == HIGH);
     
   }while(p2 != true);
-  p2Choice = p2selection;*/
+  p2Choice = p2selection;
   print_ready_sequence();
   game.setup();
   
