@@ -2406,15 +2406,19 @@ void loop() {
   //time management segment
   if(GameTimeManager - GameTime >= 60000 && GameTimeManager - GameTime <= 60012)
   {
-    time(2);
+    stadium(2);
   }
   else if(GameTimeManager - GameTime >= 120000 && GameTimeManager - GameTime <= 120016)
   {
-    time(1);
+    stadium(1);
   }
   else if(GameTimeManager - GameTime >= 180000 && GameTimeManager - GameTime <= 180020)
   {
     game_over();
+  }
+  else
+  {
+    stadium(0);
   }
 
 
@@ -2430,7 +2434,7 @@ void loop() {
 }
 
 
-void time(int time)
+/*void time(int time)
 { 
   
   matrix.setCursor(13,5);
@@ -2440,6 +2444,34 @@ void time(int time)
   matrix.print(time);
   delay(1500);
 
+}*/
+
+void stadium(int time)
+{ 
+  // Draws the lines in the middle                                                                                                                                                                                                                                                                                                                
+  matrix.drawLine(13,0, 13, 15, matrix.Color333(4, 4, 4));
+  matrix.drawLine(18,0, 18, 15, matrix.Color333(4, 4, 4));
+  //Draws Lines on both sides to set the stadium
+  matrix.drawLine(8,0, 8, 15, matrix.Color333(4, 4, 4));
+  matrix.drawLine(23,0, 23, 15, matrix.Color333(4, 4, 4));
+
+  if(time == 0)
+  { 
+    return;  
+  }
+  else
+  {
+    matrix.setCursor(13,5);
+    matrix.setTextSize(1);
+    matrix.setTextColor(matrix.Color333(7,0,0));
+  
+    matrix.print(time);
+    delay(1500);
+  }
+
+  
+  
+  
 }
 
 
@@ -2846,5 +2878,11 @@ void Print_P2()
    
 }
 
+
+
+
+
+
+//lives returner left
   
 
