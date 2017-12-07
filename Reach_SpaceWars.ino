@@ -2408,11 +2408,11 @@ void loop() {
   {
     stadium(2);
   }
-  else if(GameTimeManager - GameTime >= 120000 && GameTimeManager - GameTime <= 120016)
+  else if(GameTimeManager - GameTime >= 120000 && GameTimeManager - GameTime <= 120100)
   {
     stadium(1);
   }
-  else if(GameTimeManager - GameTime >= 180000 && GameTimeManager - GameTime <= 180020)
+  else if(GameTimeManager - GameTime >= 180000 && GameTimeManager - GameTime <= 180100)
   {
     game_over();
   }
@@ -2467,7 +2467,6 @@ void stadium(int time)
     matrix.setTextColor(matrix.Color333(7,0,0));
   
     matrix.print(time);
-    delay(1500);
   }
 
   
@@ -3091,13 +3090,13 @@ void IntroSequence_SpaceWars()
   //Printing BRAWL
   matrix.setTextColor(matrix.Color333(7, 7, 7));
   matrix.print("W");
-  delay(150);
+  delay(200);
   matrix.setTextColor(matrix.Color333(7, 7, 7));
   matrix.print("A");
-  delay(150);
+  delay(200);
   matrix.setTextColor(matrix.Color333(7, 7, 7));
   matrix.print("R");
-  delay(150);
+  delay(200);
   matrix.setTextColor(matrix.Color333(7, 7, 7));
   matrix.print("S");
   delay(3000);
