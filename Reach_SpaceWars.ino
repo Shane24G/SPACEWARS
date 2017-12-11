@@ -137,7 +137,7 @@ class Cannonball {
     void draw()
     {
       draw_with_RGB();
-      if (x >= 31 || x <= 0)
+      if (x > 31 || x < 0)
       {
         reset();
       }
@@ -1378,12 +1378,33 @@ class Game {
         bsp2.draw();
       }
     }
+    int B1Checker = 0, B2Checker = 0;
 
     void update(int potentiometer_value_p1, bool button_pressed_p1, int potentiometer_value_p2, bool button_pressed_p2)
     {
 
       time = millis();
+      
       //keeps track of time
+      if(array_p1C >= NUM_BULLETS)
+      {
+        if(B1Checker <= 1)
+        {
+          array_p1C = 0;
+          B1Checker ++;
+        }
+      }
+      if(array_p2C >= NUM_BULLETS)
+      {
+        if(B2Checker <= 1)
+        {
+          array_p2C = 0;
+          B2Checker ++;
+        }
+      }
+
+
+      
 
       //erasing bullets if they reach the end of the board
       for (int i = 0; i < NUM_BULLETS; i ++)
@@ -1918,14 +1939,14 @@ class Game {
         if (array_p2C % 2 == 1)
         {
           //getting the x co-ordinates and then adding 1 so that it shoots from the nozzle
-          x2 = ssp2.get_x() + 1 ;
+          x2 = ssp2.get_x() -1 ;
           //getting the y co-ordinate and adding 1 because the nozzle is down for the next bullet
           y2 = ssp2.get_y() + 1 ;
         }
         else if (array_p2C % 2 == 0)
         {
           //getting the x co-ordinates and then adding 1 so that it shoots from the nozzle
-          x2 = ssp2.get_x() + 1 ;
+          x2 = ssp2.get_x() - 1 ;
           //getting the y co-ordinate and adding 1 because the nozzle is up for the first bullet
           y2 = ssp2.get_y();
         }
@@ -3148,7 +3169,7 @@ void IntroSequence_SpaceWars()
 
   matrix.fillScreen(matrix.Color333(0, 0, 0));
 
-  matrix.fillRect(0, 0, 31, 9, WHITE.to_333());
+  matrix.fillRect(0, 0, 32, 9, WHITE.to_333());
 
 
 
@@ -3195,9 +3216,9 @@ void IntroSequence_SpaceWars()
   delay(3000);
 
 
-  for (int i = 2; i <= 32; i++)
+  for (int i = 1; i <= 32; i++)
   {
-    matrix.fillRect(1, 0, i, 16, BLACK.to_333());
+    matrix.fillRect(0, 0, i, 16, BLACK.to_333());
     delay(22);
   }
 
