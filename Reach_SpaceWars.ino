@@ -16,7 +16,7 @@ const int BUTTON_PIN_NUMBER = 10;
 //changes to be added
 const int NUM_BULLETS = 50;
 int p1Choice = 1, p2Choice = 1  ;
-
+long int GameTime = 0;
 
 // global constant for the number of Invaders in the game
 const int NUM_ENEMIES = 16;
@@ -1208,6 +1208,11 @@ class Crate {
       return y;
     }
 
+    bool is_activated()
+    {
+      return active;
+    }
+
     // sets x and y private members
     Crate(int x_arg, int y_arg) {
       x = x_arg;
@@ -1256,56 +1261,73 @@ class Crate {
     void initialize()
     {
       x = 14 ;
-      y = 13 ;
+      y = 6 ;
       active = false;
 
     }
 
     void draw_with_rgb() {
 
-      matrix.setCursor(x, y);
+      matrix.setCursor(14, 6);
 
-      int xC1 = x, xC2 = x + 1, xC3 = x + 2;
-      int yR1 = y, yR2 = y + 1, yR3 = y + 2;
+
 
       // draws first row of crate
-      matrix.drawPixel(xC1, yR1, WHITE.to_333());
-      matrix.drawPixel(xC2, yR1, RED.to_333());
-      matrix.drawPixel(xC3, yR1, WHITE.to_333());
+      matrix.drawPixel(14, 6, WHITE.to_333());
+      matrix.drawPixel(14, 9, WHITE.to_333());
+      matrix.drawPixel(14, 7, RED.to_333());
+      matrix.drawPixel(14, 8, RED.to_333());
 
       // draws second row of crate
-      matrix.drawPixel(xC1, yR2, RED.to_333());
-      matrix.drawPixel(xC2, yR2, RED.to_333());
-      matrix.drawPixel(xC3, yR2, RED.to_333());
+      matrix.drawPixel(15, 6, RED.to_333());
+      matrix.drawPixel(15, 7, RED.to_333());
+      matrix.drawPixel(15, 8, RED.to_333());
+      matrix.drawPixel(15, 9, RED.to_333());
+
+      matrix.drawPixel(16, 6, RED.to_333());
+      matrix.drawPixel(16, 7, RED.to_333());
+      matrix.drawPixel(16, 8, RED.to_333());
+      matrix.drawPixel(16, 9, RED.to_333());
+
 
       // draws third row of crate
-      matrix.drawPixel(xC1, yR3, WHITE.to_333());
-      matrix.drawPixel(xC2, yR3, RED.to_333());
-      matrix.drawPixel(xC3, yR3, WHITE.to_333());
+      matrix.drawPixel(17, 6, WHITE.to_333());
+      matrix.drawPixel(17, 9, WHITE.to_333());
+      matrix.drawPixel(17, 7, RED.to_333());
+      matrix.drawPixel(17, 8, RED.to_333());
     }
 
     void erase_with_rgb() {
 
-      matrix.setCursor(x, y);
+      matrix.setCursor(14, 6);
 
-      int xC1 = x, xC2 = x + 1, xC3 = x + 2;
-      int yR1 = y, yR2 = y + 1, yR3 = y + 2;
+
 
       // draws first row of crate
-      matrix.drawPixel(xC1, yR1, BLACK.to_333());
-      matrix.drawPixel(xC2, yR1, BLACK.to_333());
-      matrix.drawPixel(xC3, yR1, BLACK.to_333());
+      matrix.drawPixel(14, 6, BLACK.to_333());
+      matrix.drawPixel(14, 9, BLACK.to_333());
+      matrix.drawPixel(14, 7, BLACK.to_333());
+      matrix.drawPixel(14, 8, BLACK.to_333());
 
       // draws second row of crate
-      matrix.drawPixel(xC1, yR2, BLACK.to_333());
-      matrix.drawPixel(xC2, yR2, BLACK.to_333());
-      matrix.drawPixel(xC3, yR2, BLACK.to_333());
+      matrix.drawPixel(15, 6, BLACK.to_333());
+      matrix.drawPixel(15, 7, BLACK.to_333());
+      matrix.drawPixel(15, 8, BLACK.to_333());
+      matrix.drawPixel(15, 9, BLACK.to_333());
+
+      matrix.drawPixel(16, 6, BLACK.to_333());
+      matrix.drawPixel(16, 7, BLACK.to_333());
+      matrix.drawPixel(16, 8, BLACK.to_333());
+      matrix.drawPixel(16, 9, BLACK.to_333());
+
 
       // draws third row of crate
-      matrix.drawPixel(xC1, yR3, BLACK.to_333());
-      matrix.drawPixel(xC2, yR3, BLACK.to_333());
-      matrix.drawPixel(xC3, yR3, BLACK.to_333());
+      matrix.drawPixel(17, 6, BLACK.to_333());
+      matrix.drawPixel(17, 9, BLACK.to_333());
+      matrix.drawPixel(17, 7, BLACK.to_333());
+      matrix.drawPixel(17, 8, BLACK.to_333());
     }
+
 };
 
 int Round( int input)
@@ -1384,6 +1406,7 @@ class Game {
     {
 
       time = millis();
+      time_crate = millis();
       
       //keeps track of time
       if(array_p1C >= NUM_BULLETS)
@@ -1482,6 +1505,106 @@ class Game {
 
       //****************************************************************************************
 
+      //crate management
+      
+      if((time_crate - GameTime >= 90000) && (time_crate - GameTime) <= 95000 && present)
+      {
+        health.activate();
+        health.draw();
+
+        //checking if player 1 shoots the crate
+
+        for(int i = 0; i < NUM_BULLETS; i++)
+        { 
+          if(p1[i].has_been_fired())
+          {
+            int xpos = p1[i].get_x();
+            int ypos = p1[i].get_y();
+
+            if(xpos == 14)
+            {
+              if(ypos >= 6 && ypos <= 9)
+              {
+                //erasing the crate
+                present = false;
+                health.reset();
+                health.erase();
+
+                p1[i].reset();
+                p1[i].erase();
+
+                //increasing the life of the player
+                if(p1Choice == 1)
+                {
+                  cp1.Increase_Life();
+                }
+                else if(p1Choice == 2)
+                {
+                  ssp1.Increase_Life();
+                }
+                else if(p1Choice == 3)
+                {
+                  bsp1.Increase_Life();
+                }
+                
+                break;
+              }
+            }
+            
+          }
+        }
+        if(present)
+        {
+          //checking if player 1 shoots the crate
+
+          for(int i = 0; i < NUM_BULLETS; i++)
+          {
+            if(p2[i].has_been_fired())
+            {
+              int xpos = p2[i].get_x();
+              int ypos = p2[i].get_y();
+
+              if(xpos == 17)
+              {
+                if(ypos >= 6 && ypos <= 9)
+                {
+                  //erasing the crate
+                  present = false;
+                  health.reset();
+                  health.erase();
+
+                  p2[i].reset();
+                  p2[i].erase();
+
+                  //increasing the life of the player
+                  if(p2Choice == 1)
+                  {
+                    cp2.Increase_Life();
+                  }
+                  else if(p2Choice == 2)
+                  {
+                    ssp2.Increase_Life();
+                  }
+                  else if(p2Choice == 3)
+                  {
+                    bsp2.Increase_Life();
+                  }
+                
+                break;
+              }
+            }
+            
+          }
+        }
+        }
+      }
+      else
+      {
+        health.reset();
+        health.erase();
+      }
+
+      //****************************************************************************************
       // checking for collision of bullets
 
       for (int i = 0; i < NUM_BULLETS; i++)
@@ -1575,6 +1698,58 @@ class Game {
 
     }
 
+    void Print_Winner()
+    {
+      int P1_lives, P2_lives;
+      //matrix fill screen  with black
+
+      if(p1Choice == 1)
+      //drawing classic for player 1
+      {
+        P1_lives = cp1.get_lives();
+      }
+      else if(p1Choice == 2)
+      //drawing Slim Shady for player 1
+      {
+        P1_lives = ssp1.get_lives();
+      }
+      else if(p1Choice == 3)
+      //drawing Big Shaq for player 1
+      {
+        P1_lives = bsp1.get_lives();
+      }
+
+      //drawing player 2 based on type of player
+      if(p2Choice == 1)
+      //drawing classic for player 2
+      {
+        P2_lives = cp2.get_lives();
+      }
+      else if(p2Choice == 2)
+      //drawing Slim Shady for player 2
+      {
+        P2_lives = ssp2.get_lives();
+      }
+      else if(p2Choice == 3)
+      //drawing Big Shaq for player 2
+      {
+        P2_lives = bsp2.get_lives();
+      }
+
+
+      if(P1_lives > P2_lives)
+      {
+        // print_P1wins();
+        print_p1Winner();
+      }
+      else
+      {
+      // print_P2wins();
+      print_p2Winner();
+    }
+
+  }
+
 
 
 
@@ -1587,15 +1762,20 @@ class Game {
     //int NUM_BULLETS = 80;
     BigShaq_Player1 bsp1;
     BigShaq_Player2 bsp2;
+    Crate health;
+    bool present = true;
 
     unsigned long time;
     long int t1_move, t2_move, t1_fire, t2_fire;
+    long int time_crate;
+    
 
     Cannonball p1[NUM_BULLETS];
     Cannonball p2[NUM_BULLETS];
 
     int array_p1C = 0, array_p2C = 0;
     //^ used to keep track of number of bullets fired by Players
+    
     int CodCalc(int potval)
     {
       double roundHelper ;
@@ -1611,59 +1791,8 @@ class Game {
 
       return rounder;
     }
-  
-  void Print_Winner()
- {
-   int P1_lives, P2_lives;
-   //matrix fill screen  with black
 
-   if(p1Choice == 1)
-    //drawing classic for player 1
-    {
-      P1_lives = cp1.get_lives();
-    }
-    else if(p1Choice == 2)
-    //drawing Slim Shady for player 1
-    {
-      P1_lives = ssp1.get_lives();
-    }
-    else if(p1Choice == 3)
-    //drawing Big Shaq for player 1
-    {
-      P1_lives = bsp1.get_lives();
-    }
     
-    //drawing player 2 based on type of player
-    if(p2Choice == 1)
-    //drawing classic for player 2
-    {
-      P2_lives = cp2.get_lives();
-    }
-    else if(p2Choice == 2)
-    //drawing Slim Shady for player 2
-    {
-      P2_lives = ssp2.get_lives();
-    }
-    else if(p2Choice == 3)
-    //drawing Big Shaq for player 2
-    {
-      P2_lives = bsp2.get_lives();
-    }
-
-
-   if(P1_lives > P2_lives)
-   {
-   // print_P1wins();
-   }
-   else 
-   {
-   // print_P2wins();
-    }
-
-
-   
- }
-
 
 
     void BulletMoving_Player1()
@@ -2129,6 +2258,7 @@ class Game {
             {
               cp1.hit();
               //hit will reduce the life of the player by on e
+              Print_Winner();
               game_over();
               //runs game over sequence
               return;
@@ -2156,6 +2286,7 @@ class Game {
             if (cp1.get_lives() <= 1)
             {
               cp1.hit();
+              Print_Winner();
               game_over();
               return;
             }
@@ -2196,6 +2327,7 @@ class Game {
               //similar code as the above incoming
             {
               cp2.hit();
+              Print_Winner();
               game_over();
               return;
             }
@@ -2215,6 +2347,7 @@ class Game {
             if (cp2.get_lives() <= 1)
             {
               cp2.hit();
+              Print_Winner();
               game_over();
               return;
             }
@@ -2256,6 +2389,7 @@ class Game {
           if (ssp1.get_lives() <= 1)
           {
             ssp1.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2291,6 +2425,7 @@ class Game {
           if (ssp2.get_lives() <= 1)
           {
             ssp2.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2333,6 +2468,7 @@ class Game {
           if (bsp1.get_lives() <= 1)
           {
             bsp1.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2353,6 +2489,7 @@ class Game {
           if (bsp1.get_lives() <= 1)
           {
             bsp1.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2390,6 +2527,7 @@ class Game {
           if (bsp2.get_lives() <= 1)
           {
             bsp2.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2410,6 +2548,7 @@ class Game {
           if (bsp2.get_lives() <= 1)
           {
             bsp2.hit();
+            Print_Winner();
             game_over();
             return;
           }
@@ -2443,7 +2582,7 @@ class Game {
 
 
 Game game;
-long int GameTime = 0;
+//long int GameTime = 0;
 // see http://arduino.cc/en/Reference/Setup
 
 void setup() {
@@ -2634,6 +2773,7 @@ void stadium()
   }
   else if (GameTimeManager - GameTime > 180000)
   {
+    game.Print_Winner();
     game_over();
   }
 
@@ -3286,15 +3426,114 @@ void IntroSequence_SpaceWars()
 
 
 }
-/*
-  void fireBullets()
-  {
-  if(p1Choice == )
-  }
-*/
 
-//lives returner left
+void print_p1Winner()
+{
+   matrix.fillScreen(matrix.Color333(0, 0, 0));
+   matrix.setCursor(5, 1);
+   matrix.setTextSize(1);
+   matrix.setTextColor(matrix.Color333(4, 0, 0));
+   matrix.print("P");
+   matrix.setTextColor(matrix.Color333(4, 4, 4));
+   delay(250);
+   matrix.print(1);
+   delay(250);
 
+   matrix.setCursor(1, 9);
+   matrix.setTextSize(1);
+   matrix.setTextColor(matrix.Color333(0, 4, 4));
+   matrix.print("W");
+   delay(100);
+   matrix.print("i");
+   delay(100);
+   matrix.print("n");
+   delay(100);
+   matrix.print("s");
+   delay(100);
+   matrix.print("!");
+   delay(400);
+  
+   matrix.drawLine(20, 8, 25, 8, matrix.Color333(4, 4, 0));
+   matrix.drawLine(21, 7, 24, 7, matrix.Color333(4, 4, 0));
+   matrix.drawLine(22, 6, 23, 6, matrix.Color333(4, 4, 0));
+   matrix.drawLine(22, 5, 23, 5, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(21, 4, YELLOW.to_333());
+   matrix.drawPixel(24, 4, YELLOW.to_333());
+   matrix.drawPixel(19, 3, YELLOW.to_333());
+   matrix.drawPixel(26, 3, YELLOW.to_333());
+   matrix.drawPixel(19, 2, YELLOW.to_333());
+   matrix.drawPixel(26, 2, YELLOW.to_333());
+   matrix.drawPixel(20, 0, YELLOW.to_333());
+   matrix.drawPixel(25, 0, YELLOW.to_333());
+   matrix.drawPixel(19, 1, YELLOW.to_333());
+   matrix.drawPixel(26, 1, YELLOW.to_333());
+   matrix.drawPixel(25, 4, YELLOW.to_333());
+   matrix.drawPixel(20, 4, YELLOW.to_333());
 
+ 
+   matrix.drawPixel(27, 1, YELLOW.to_333());
+   matrix.drawLine(28, 2, 28, 3, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(27, 4, YELLOW.to_333());
 
+   matrix.drawPixel(18, 1, YELLOW.to_333());
+   matrix.drawLine(17, 2, 17, 3, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(18, 4, YELLOW.to_333());
 
+   delay(3000);
+  
+}
+
+void print_p2Winner()
+{
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+   matrix.setCursor(4, 1);
+   matrix.setTextSize(1);
+   matrix.setTextColor(matrix.Color333(4, 0, 0));
+   matrix.print("P");
+   matrix.setTextColor(matrix.Color333(4, 4, 4));
+   delay(250);
+   matrix.print(2);
+   delay(250);
+
+   matrix.setCursor(1, 9);
+   matrix.setTextSize(1);
+   matrix.setTextColor(matrix.Color333(0, 4, 4));
+   matrix.print("W");
+   delay(100);
+   matrix.print("i");
+   delay(100);
+   matrix.print("n");
+   delay(100);
+   matrix.print("s");
+   delay(100);
+   matrix.print("!");
+   delay(450);
+  
+   matrix.drawLine(20, 8, 25, 8, matrix.Color333(4, 4, 0));
+   matrix.drawLine(21, 7, 24, 7, matrix.Color333(4, 4, 0));
+   matrix.drawLine(22, 6, 23, 6, matrix.Color333(4, 4, 0));
+   matrix.drawLine(22, 5, 23, 5, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(21, 4, YELLOW.to_333());
+   matrix.drawPixel(24, 4, YELLOW.to_333());
+   matrix.drawPixel(19, 3, YELLOW.to_333());
+   matrix.drawPixel(26, 3, YELLOW.to_333());
+   matrix.drawPixel(19, 2, YELLOW.to_333());
+   matrix.drawPixel(26, 2, YELLOW.to_333());
+   matrix.drawPixel(20, 0, YELLOW.to_333());
+   matrix.drawPixel(25, 0, YELLOW.to_333());
+   matrix.drawPixel(19, 1, YELLOW.to_333());
+   matrix.drawPixel(26, 1, YELLOW.to_333());
+   matrix.drawPixel(25, 4, YELLOW.to_333());
+   matrix.drawPixel(20, 4, YELLOW.to_333());
+
+ 
+   matrix.drawPixel(27, 1, YELLOW.to_333());
+   matrix.drawLine(28, 2, 28, 3, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(27, 4, YELLOW.to_333());
+
+   matrix.drawPixel(18, 1, YELLOW.to_333());
+   matrix.drawLine(17, 2, 17, 3, matrix.Color333(4, 4, 0));
+   matrix.drawPixel(18, 4, YELLOW.to_333());
+
+   delay(3000);
+}
