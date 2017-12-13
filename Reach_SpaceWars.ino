@@ -1611,6 +1611,58 @@ class Game {
 
       return rounder;
     }
+  
+  void Print_Winner()
+ {
+   int P1_lives, P2_lives;
+   //matrix fill screen  with black
+
+   if(p1Choice == 1)
+    //drawing classic for player 1
+    {
+      P1_lives = cp1.get_lives();
+    }
+    else if(p1Choice == 2)
+    //drawing Slim Shady for player 1
+    {
+      P1_lives = ssp1.get_lives();
+    }
+    else if(p1Choice == 3)
+    //drawing Big Shaq for player 1
+    {
+      P1_lives = bsp1.get_lives();
+    }
+    
+    //drawing player 2 based on type of player
+    if(p2Choice == 1)
+    //drawing classic for player 2
+    {
+      P2_lives = cp2.get_lives();
+    }
+    else if(p2Choice == 2)
+    //drawing Slim Shady for player 2
+    {
+      P2_lives = ssp2.get_lives();
+    }
+    else if(p2Choice == 3)
+    //drawing Big Shaq for player 2
+    {
+      P2_lives = bsp2.get_lives();
+    }
+
+
+   if(P1_lives > P2_lives)
+   {
+   // print_P1wins();
+   }
+   else 
+   {
+   // print_P2wins();
+    }
+
+
+   
+ }
 
 
 
