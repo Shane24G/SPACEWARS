@@ -485,8 +485,8 @@ class SlimShady_Player2 {
       else if (lives == 6)
       {
         //drawing first column with the AQUA argument
-        matrix.drawPixel(31, yR1, color.to_333()) ;
-        matrix.drawPixel(31, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR1, YELLOW.to_333()) ;
+        matrix.drawPixel(31, yR2, YELLOW.to_333()) ;
         //drawing second column with RED color
         matrix.drawPixel(30, yR1, WHITE.to_333()) ;
         matrix.drawPixel(30, yR2, WHITE.to_333()) ;
@@ -661,8 +661,8 @@ class BigShaq_Player1 {
       {
         //drawing first column with the AQUA argument
         matrix.drawPixel(0, yR1, WHITE.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
-        matrix.drawPixel(0, yR3, color.to_333()) ;
+        matrix.drawPixel(0, yR2, YELLOW.to_333()) ;
+        matrix.drawPixel(0, yR3, YELLOW.to_333()) ;
         matrix.drawPixel(0, yR4, WHITE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(1, yR1, WHITE.to_333()) ;
@@ -772,8 +772,8 @@ class BigShaq_Player2 {
       {
         //drawing first column with the AQUA argument
         matrix.drawPixel(31, yR1, PURPLE.to_333()) ;
-        matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR2, YELLOW.to_333()) ;
+        matrix.drawPixel(31, yR3, YELLOW.to_333()) ;
         matrix.drawPixel(31, yR4, PURPLE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR1, PURPLE.to_333()) ;
@@ -834,8 +834,8 @@ class BigShaq_Player2 {
       {
         //drawing first column with the AQUA argument
         matrix.drawPixel(31, yR1, WHITE.to_333()) ;
-        matrix.drawPixel(31, yR2, color.to_333()) ;
-        matrix.drawPixel(31, yR3, color.to_333()) ;
+        matrix.drawPixel(31, yR2, YELLOW.to_333()) ;
+        matrix.drawPixel(31, yR3, YELLOW.to_333()) ;
         matrix.drawPixel(31, yR4, WHITE.to_333()) ;
         //drawing second column with PURPLE color
         matrix.drawPixel(30, yR1, WHITE.to_333()) ;
@@ -1007,7 +1007,7 @@ class Classic_Player1 {
       {
         //drawing first column with the AQUA argument
         matrix.drawPixel(0, yR1, WHITE.to_333()) ;
-        matrix.drawPixel(0, yR2, color.to_333()) ;
+        matrix.drawPixel(0, yR2, YELLOW.to_333()) ;
         matrix.drawPixel(0, yR3, WHITE.to_333()) ;
 
         //drawing second column with PURPLE color
@@ -1175,7 +1175,7 @@ class Classic_Player2 {
       {
         //drawing first column with the AQUA argument
         matrix.drawPixel(31, yR1, WHITE.to_333()) ;
-        matrix.drawPixel(31, yR2, color.to_333()) ;
+        matrix.drawPixel(31, yR2, YELLOW.to_333()) ;
         matrix.drawPixel(31, yR3, WHITE.to_333()) ;
 
         //drawing second column with PURPLE color
