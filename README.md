@@ -1,2 +1,2 @@
 # SPACEWARS
-Repo owned by Team Omega. This is an Arduino based game written in C++.
+Repo owned by Shane Gomindes. This is an Arduino based game written in C++.
